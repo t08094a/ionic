@@ -38,6 +38,7 @@ import os
 
 init(autoreset=True)
 
+create_app = 'Erzeuge App Template'
 ionic_serve = 'Debug mit ionic serve'
 build_pwa = 'Baue Progressive Web App'
 build_android = 'Baue für Android'
@@ -47,6 +48,14 @@ apk_zipalign = 'Erzeugtes APK mit Zipalign signieren (muss nach Jarsigner Ausfü
 generate_rsa_key = 'Generierung eines RSA Keys für Android'
 upload_google_store = 'Upload des APK in den Google Playstore'
 cancel = 'Abbruch'
+
+def action_create_app():
+    print(create_app)
+
+    cmd = 'ionic start --no-git'
+    print(Fore.CYAN + 'call: ' + cmd)
+
+    subprocess.run(cmd, shell=True, check=True)
 
 def action_ionic_serve():
     print(ionic_serve)
@@ -147,6 +156,7 @@ def action_cancel():
 if __name__ == '__main__':
     
     options = OrderedDict([
+        (create_app, action_create_app),
         (ionic_serve, action_ionic_serve),
         (build_pwa, action_build_pwa),
         (build_android, action_build_android),
